@@ -31,7 +31,20 @@ export default function App() {
 			.catch((error) => console.error("Error fetching the JSON data:", error));
 	};
 
-	const handleExportData = () => {};
+	const handleExportData = async () => {
+		if (!data.length) {
+			return;
+		}
+		const jsonString = JSON.stringify(data, null, 2);
+
+		const blob = new Blob([jsonString], { type: "application/json" });
+
+		const link = document.createElement("a");
+		link.href = URL.createObjectURL(blob);
+		link.download = "data.json";
+		link.click();
+		URL.revokeObjectURL(link.href);
+	};
 
 	const handleDrawerOpen = () => {
 		setOpen(true);
