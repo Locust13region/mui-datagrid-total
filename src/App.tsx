@@ -8,14 +8,14 @@ import HeaderContent from "./components/header-content";
 import { useState } from "react";
 import Sidebar from "./components/sidebar";
 import { AppBar, Drawer, Main } from "./theme/styled";
-import { DataFilter, DataItem } from "./types/types";
+import { DataItem } from "./types/types";
 import MainContent from "./components/main-content";
 
 export default function App() {
 	const [open, setOpen] = useState<boolean>(false);
 	const [data, setData] = useState<DataItem[]>([]);
 	const [categories, setCategories] = useState<string[]>([]);
-	const [dataFilter, setDataFilter] = useState<DataFilter>({});
+	const [dataFiltered, setDataFiltered] = useState<DataItem[]>([]);
 
 	const handleLoadData = async () => {
 		await fetch("/data.json")
@@ -96,11 +96,12 @@ export default function App() {
 				<MainTitle
 					handleLoad={handleLoadData}
 					handleExport={handleExportData}
-					setDataClear={setData}
-					setDataFilter={setDataFilter}
+					data={data}
+					setData={setData}
+					setDataFiltered={setDataFiltered}
 					categories={categories}
 				/>
-				<MainContent data={data} />
+				<MainContent data={dataFiltered.length ? dataFiltered : data} />
 			</Main>
 		</Box>
 	);

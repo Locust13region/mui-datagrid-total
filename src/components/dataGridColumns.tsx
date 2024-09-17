@@ -8,7 +8,7 @@ export const columns: GridColDef<DataItem>[] = [
 	{ field: "item", headerName: "Предмет", width: 110, sortable: true },
 	{
 		field: "supplierArticle",
-		headerName: "Артикул",
+		headerName: "Артикул поставщика",
 		width: 200,
 		sortable: true,
 	},

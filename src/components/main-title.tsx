@@ -12,21 +12,23 @@ import CreateNewFolderIcon from "@mui/icons-material/CreateNewFolder";
 import CloseIcon from "@mui/icons-material/Close";
 import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
-import { DataFilter, DataItem } from "../types/types";
+import { DataItem } from "../types/types";
 
 interface MainTitleProps {
 	handleLoad: () => Promise<void>;
 	handleExport: () => void;
-	setDataClear: Dispatch<React.SetStateAction<DataItem[]>>;
-	setDataFilter: Dispatch<React.SetStateAction<DataFilter>>;
+	data: DataItem[];
+	setData: Dispatch<React.SetStateAction<DataItem[]>>;
+	setDataFiltered: Dispatch<React.SetStateAction<DataItem[]>>;
 	categories: string[];
 }
 
 const MainTitle = ({
 	handleLoad,
 	handleExport,
-	setDataClear,
-	setDataFilter,
+	data,
+	setData,
+	setDataFiltered,
 	categories,
 }: MainTitleProps) => {
 	const [barcodeFilter, setBarCodeFilter] = useState("");
@@ -34,21 +36,29 @@ const MainTitle = ({
 	const [itemSizeFilter, setItemSizeFilter] = useState("");
 	const [categoryFilter, setCategoryFilter] = useState<string>("");
 
-	const handleSetFilter = () =>
-		setDataFilter({
-			barcodeFilter,
-			supplierArticleFilter,
-			itemSizeFilter,
-			categoryFilter,
+	const handleSetFilter = () => {
+		if (!data.length) {
+			return;
+		}
+		const filtered = data.filter((element) => {
+			return (
+				(!barcodeFilter || element.barcode.includes(barcodeFilter)) &&
+				(!supplierArticleFilter ||
+					element.supplierArticle.toLowerCase() ===
+						supplierArticleFilter.toLowerCase()) &&
+				(!itemSizeFilter || element.itemSize === itemSizeFilter) &&
+				(!categoryFilter || element.item === categoryFilter)
+			);
 		});
-
+		setDataFiltered(filtered);
+	};
 	const handleClearData = () => {
 		setBarCodeFilter("");
 		setSupplierArticleFilter("");
 		setItemSizeFilter("");
 		setCategoryFilter("");
-		setDataClear([]);
-		setDataFilter({});
+		setData([]);
+		setDataFiltered([]);
 	};
 
 	return (
