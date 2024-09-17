@@ -29,14 +29,14 @@ const MainTitle = ({
 	setDataFilter,
 	categories,
 }: MainTitleProps) => {
-	const [barCodeFilter, setBarCodeFilter] = useState("");
+	const [barcodeFilter, setBarCodeFilter] = useState("");
 	const [supplierArticleFilter, setSupplierArticleFilter] = useState("");
 	const [itemSizeFilter, setItemSizeFilter] = useState("");
 	const [categoryFilter, setCategoryFilter] = useState<string>("");
 
 	const handleSetFilter = () =>
 		setDataFilter({
-			barCodeFilter,
+			barcodeFilter,
 			supplierArticleFilter,
 			itemSizeFilter,
 			categoryFilter,
@@ -52,7 +52,7 @@ const MainTitle = ({
 	};
 
 	return (
-		<>
+		<Box>
 			<Stack
 				gap={2}
 				direction="row"
@@ -81,7 +81,7 @@ const MainTitle = ({
 			>
 				<InputTextField
 					fieldWidth="26ch"
-					value={barCodeFilter}
+					value={barcodeFilter}
 					slotProps={{
 						input: {
 							startAdornment: (
@@ -221,7 +221,7 @@ const MainTitle = ({
 				</Stack>
 				<Divider />
 			</Box>
-		</>
+		</Box>
 	);
 };
 

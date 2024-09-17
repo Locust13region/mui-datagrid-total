@@ -1,5 +1,5 @@
 export interface DataFilter {
-	barCodeFilter?: string;
+	barcodeFilter?: string;
 	supplierArticleFilter?: string;
 	itemSizeFilter?: string;
 	categoryFilter?: string;

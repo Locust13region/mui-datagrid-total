@@ -12,7 +12,7 @@ import { DataFilter, DataItem } from "./types/types";
 import MainContent from "./components/main-content";
 
 export default function App() {
-	const [open, setOpen] = useState(false);
+	const [open, setOpen] = useState<boolean>(false);
 	const [data, setData] = useState<DataItem[]>([]);
 	const [categories, setCategories] = useState<string[]>([]);
 	const [dataFilter, setDataFilter] = useState<DataFilter>({});
@@ -23,9 +23,7 @@ export default function App() {
 			.then((jsonData) => {
 				setData(jsonData);
 				setCategories(
-					Array.from(
-						new Set(jsonData.map((item: DataItem) => item.supplierArticle))
-					)
+					Array.from(new Set(jsonData.map((item: DataItem) => item.item)))
 				);
 			})
 			.catch((error) => console.error("Error fetching the JSON data:", error));
@@ -58,6 +56,8 @@ export default function App() {
 			height="100vh"
 			padding={1}
 			bgcolor="#eff0f2"
+			display="flex"
+			flexDirection="column"
 			overflow="hidden"
 		>
 			<CssBaseline />
@@ -100,10 +100,7 @@ export default function App() {
 					setDataFilter={setDataFilter}
 					categories={categories}
 				/>
-				<MainContent
-					data={data}
-					dataFilter={dataFilter}
-				/>
+				<MainContent data={data} />
 			</Main>
 		</Box>
 	);

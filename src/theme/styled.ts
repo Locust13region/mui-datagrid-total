@@ -16,12 +16,15 @@ export const Drawer = styled(MuiDrawer)(() => ({
 	},
 }));
 
-export const Main = styled("main", {
+export const Main = styled("div", {
 	shouldForwardProp: (prop) => prop !== "open",
 })<{
 	open?: boolean;
 }>(({ theme }) => ({
 	flexGrow: 1,
+	display: "flex",
+	flexDirection: "column",
+	overflow: "hidden",
 	padding: theme.spacing(4, 1, 0, 3),
 	transition: theme.transitions.create(["margin", "width"], {
 		easing: theme.transitions.easing.sharp,
