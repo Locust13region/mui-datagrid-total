@@ -58,7 +58,6 @@ export default function App() {
 			bgcolor="#eff0f2"
 			display="flex"
 			flexDirection="column"
-			overflow="hidden"
 		>
 			<CssBaseline />
 			<AppBar

@@ -62,7 +62,11 @@ const MainTitle = ({
 	};
 
 	return (
-		<Box>
+		<Box
+			component="form"
+			noValidate
+			autoCapitalize="off"
+		>
 			<Stack
 				gap={2}
 				direction="row"
@@ -146,6 +150,7 @@ const MainTitle = ({
 				<SelectionTextField
 					select
 					label="Категория"
+					id="categoryFilter"
 					value={categoryFilter}
 					name="categoryFilter"
 					variant="filled"

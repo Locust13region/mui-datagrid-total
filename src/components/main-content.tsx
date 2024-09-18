@@ -84,7 +84,7 @@ const MainContent = ({
 			mt="20px"
 			flexGrow={1}
 			overflow="hidden"
-			width="100%"
+			// width="100%"
 		>
 			<DataGrid
 				rows={currentData}
@@ -112,14 +112,7 @@ const MainContent = ({
 				}
 				processRowUpdate={handleProcessRowUpdate}
 				onProcessRowUpdateError={handleProcessRowUpdateError}
-				initialState={{
-					filter: {
-						// filterModel: {},
-					},
-				}}
 				sx={{
-					flexGrow: 1,
-					overflow: "auto",
 					borderRadius: "12px",
 					padding: "5px 5px",
 					backgroundColor: "#FFF",
