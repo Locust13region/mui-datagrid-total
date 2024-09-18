@@ -2,6 +2,7 @@ import { GridColDef } from "@mui/x-data-grid";
 import { DataItem } from "../types/types";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import Tooltip from "@mui/material/Tooltip";
 
 export const columns: GridColDef<DataItem>[] = [
 	{ field: "barcode", headerName: "Баркод", width: 150, sortable: true },
@@ -25,7 +26,11 @@ export const columns: GridColDef<DataItem>[] = [
 		width: 180,
 		sortable: true,
 		editable: true,
-		description: "This column has a value getter.",
+		description: "Редактируемый столбец. Только цифры.",
+		valueParser: (value) => {
+			const parsedValue = Number(value);
+			return isNaN(parsedValue) ? 0 : parsedValue;
+		},
 	},
 	{
 		field: "itemsInTransit",
@@ -33,22 +38,28 @@ export const columns: GridColDef<DataItem>[] = [
 		width: 180,
 		sortable: true,
 		editable: true,
-		description: "This column has a value getter.",
-		renderHeader: () => (
-			<Box>
-				<Typography
-					variant="body2"
-					sx={{ fontWeight: 500 }}
-				>
-					Товары в пути
-				</Typography>
-				<Typography
-					variant="caption"
-					sx={{ color: "gray" }}
-				>
-					(заказы и возвраты)
-				</Typography>
-			</Box>
+		description: "Редактируемый столбец. Только цифры.",
+		valueParser: (value) => {
+			const parsedValue = Number(value);
+			return isNaN(parsedValue) ? 0 : parsedValue;
+		},
+		renderHeader: (params) => (
+			<Tooltip title={params.colDef.description}>
+				<Box>
+					<Typography
+						variant="body2"
+						sx={{ fontWeight: 500 }}
+					>
+						Товары в пути
+					</Typography>
+					<Typography
+						variant="caption"
+						sx={{ color: "gray" }}
+					>
+						(заказы и возвраты)
+					</Typography>
+				</Box>
+			</Tooltip>
 		),
 	},
 	{
@@ -86,11 +97,4 @@ export const columns: GridColDef<DataItem>[] = [
 			</Box>
 		),
 	},
-	// {
-	// 	field: "fullName",
-	// 	headerName: "Full name",
-	// 	sortable: true,
-	// 	width: 160,
-	// 	valueGetter: (value, row) => `${row.firstName || ""} ${row.lastName || ""}`,
-	// },
 ];

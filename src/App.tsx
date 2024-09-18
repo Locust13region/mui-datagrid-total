@@ -101,7 +101,12 @@ export default function App() {
 					setDataFiltered={setDataFiltered}
 					categories={categories}
 				/>
-				<MainContent data={dataFiltered.length ? dataFiltered : data} />
+				<MainContent
+					data={data}
+					dataFiltered={dataFiltered}
+					setData={setData}
+					setDataFiltered={setDataFiltered}
+				/>
 			</Main>
 		</Box>
 	);

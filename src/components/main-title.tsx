@@ -92,6 +92,7 @@ const MainTitle = ({
 				<InputTextField
 					fieldWidth="26ch"
 					value={barcodeFilter}
+					name="barcodeFilter"
 					slotProps={{
 						input: {
 							startAdornment: (
@@ -109,6 +110,7 @@ const MainTitle = ({
 				<InputTextField
 					fieldWidth="30ch"
 					value={supplierArticleFilter}
+					name="supplierArticleFilter"
 					slotProps={{
 						input: {
 							startAdornment: (
@@ -126,6 +128,7 @@ const MainTitle = ({
 				<InputTextField
 					fieldWidth="13ch"
 					value={itemSizeFilter}
+					name="itemSizeFilter"
 					slotProps={{
 						input: {
 							startAdornment: (
@@ -144,6 +147,7 @@ const MainTitle = ({
 					select
 					label="Категория"
 					value={categoryFilter}
+					name="categoryFilter"
 					variant="filled"
 					slotProps={{
 						input: {
