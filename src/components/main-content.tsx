@@ -53,7 +53,6 @@ const MainContent = ({
 			(acc, row) => acc + row.itemsInTransit,
 			0
 		);
-		console.log(totalAvailableToOrder);
 		setAvailableToOrderSum(totalAvailableToOrder);
 		setItemsInTransitSum(totalItemsInTransit);
 	}, [currentData]);

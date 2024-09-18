@@ -10,7 +10,6 @@ const MainFooter = ({
 	availableToOrderSum,
 	itemsInTransitSum,
 }: MainFooterProps) => {
-	console.log(availableToOrderSum, itemsInTransitSum);
 	return (
 		<Stack
 			minHeight="64px"
