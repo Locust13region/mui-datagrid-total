@@ -20,6 +20,7 @@ const UnsortedIcon = (props: GridColumnUnsortedIconProps) => {
 	const { sortingOrder, ...other } = props;
 	return <KeyboardArrowDownIcon {...other} />;
 };
+
 interface MainContentProps {
 	data: DataItem[];
 	dataFiltered: DataItem[];
@@ -100,9 +101,13 @@ const MainContent = ({
 					columnUnsortedIcon: UnsortedIcon,
 					columnSortedAscendingIcon: ArrowDropUpIcon,
 					columnSortedDescendingIcon: ArrowDropDownIcon,
-					footer: MainFooter,
+					footer: () => (
+						<MainFooter
+							availableToOrderSum={availableToOrderSum}
+							itemsInTransitSum={itemsInTransitSum}
+						/>
+					),
 				}}
-				// slotProps={{ footer: { param1: 10, param2: 20 } }}
 				getRowClassName={(params) =>
 					params.indexRelativeToCurrentPage % 2 === 0 ? "even-row" : "odd-row"
 				}
@@ -173,7 +178,6 @@ const MainContent = ({
 						textAlign: "left",
 						backgroundColor: "",
 					},
-
 					"& ::-webkit-scrollbar": {
 						scrollbarWidth: "thin",
 						width: "8px",

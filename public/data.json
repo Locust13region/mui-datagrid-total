@@ -27,7 +27,7 @@
 		"supplierArticle": "Брюки",
 		"itemSize": "50-54",
 		"availableToOrder": 25,
-		"itemsInTransit": "50-2",
+		"itemsInTransit": 50,
 		"totalItems": 2,
 		"warehouse": "Склад 1",
 		"deliveryTimeDays": 10

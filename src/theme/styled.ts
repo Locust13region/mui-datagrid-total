@@ -2,6 +2,7 @@ import { styled } from "@mui/material/styles";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import MuiDrawer from "@mui/material/Drawer";
 import MuiTextField from "@mui/material/TextField";
+import MuiBox from "@mui/material/Box";
 export const drawerWidth = 300;
 
 export const Drawer = styled(MuiDrawer)(() => ({
@@ -115,4 +116,11 @@ export const SelectionTextField = styled(MuiTextField)(() => ({
 		top: "auto",
 		bottom: 3,
 	},
+}));
+export const FooterBox = styled(MuiBox)(() => ({
+	height: "100%",
+	display: "flex",
+	alignItems: "center",
+	paddingLeft: "15px",
+	backgroundColor: "#f0f1f3",
 }));

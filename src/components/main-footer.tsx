@@ -1,6 +1,6 @@
-import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
+import { FooterBox } from "../theme/styled";
 
 interface MainFooterProps {
 	availableToOrderSum: number;
@@ -16,55 +16,28 @@ const MainFooter = ({
 			minHeight="64px"
 			direction="row"
 			alignItems="center"
-			paddingX={1}
+			paddingX="5px"
 			marginTop={1}
-			gap="4px"
+			gap="5px"
 		>
-			<Box
+			<FooterBox
+				flexBasis="72ch"
+				paddingLeft="20px"
 				sx={{
-					flexBasis: "72ch",
-					height: "100%",
-					display: "flex",
-					alignItems: "center",
-					paddingLeft: "15px",
-					backgroundColor: "#f0f1f3",
 					borderBottomLeftRadius: "8px",
 				}}
 			>
 				<Typography>Итого:</Typography>
-			</Box>
-			<Box
+			</FooterBox>
+			<FooterBox flexBasis="22ch">
+				<Typography>{availableToOrderSum}</Typography>
+			</FooterBox>
+			<FooterBox flexBasis="22ch">
+				<Typography>{itemsInTransitSum}</Typography>
+			</FooterBox>
+			<FooterBox
+				flexGrow={1}
 				sx={{
-					flexBasis: "22ch",
-					height: "100%",
-					display: "flex",
-					alignItems: "center",
-					paddingLeft: "15px",
-					backgroundColor: "#f0f1f3",
-				}}
-			>
-				<Typography>Сумма</Typography>
-			</Box>
-			<Box
-				sx={{
-					flexBasis: "22ch",
-					height: "100%",
-					display: "flex",
-					alignItems: "center",
-					paddingLeft: "15px",
-					backgroundColor: "#f0f1f3",
-				}}
-			>
-				<Typography>Сумма</Typography>
-			</Box>
-			<Box
-				sx={{
-					flexGrow: 1,
-					height: "100%",
-					display: "flex",
-					alignItems: "center",
-					paddingLeft: "15px",
-					backgroundColor: "#f0f1f3",
 					borderBottomRightRadius: "8px",
 				}}
 			/>
