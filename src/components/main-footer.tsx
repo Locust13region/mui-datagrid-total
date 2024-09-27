@@ -1,15 +1,16 @@
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import { FooterBox } from "../theme/styled";
+import { memo } from "react";
 
 interface MainFooterProps {
 	availableToOrderSum: number;
 	itemsInTransitSum: number;
 }
-const MainFooter = ({
+const MainFooter: React.FC<MainFooterProps> = ({
 	availableToOrderSum,
 	itemsInTransitSum,
-}: MainFooterProps) => {
+}) => {
 	return (
 		<Stack
 			minHeight="64px"
@@ -44,4 +45,4 @@ const MainFooter = ({
 	);
 };
 
-export default MainFooter;
+export default memo(MainFooter);

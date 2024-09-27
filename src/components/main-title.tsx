@@ -3,7 +3,7 @@ import DescriptionIcon from "@mui/icons-material/Description";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import InputAdornment from "@mui/material/InputAdornment";
-import { Dispatch, useState } from "react";
+import { memo } from "react";
 import { InputTextField, SelectionTextField } from "../theme/styled";
 import MenuItem from "@mui/material/MenuItem";
 import UnarchiveIcon from "@mui/icons-material/Unarchive";
@@ -13,43 +13,41 @@ import CloseIcon from "@mui/icons-material/Close";
 import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
 import { DataItem } from "../types/types";
+import useFilter from "../hooks/filter-hook";
 
 interface MainTitleProps {
 	handleLoad: () => Promise<void>;
 	handleExport: () => void;
 	data: DataItem[];
-	setData: Dispatch<React.SetStateAction<DataItem[]>>;
-	setDataFiltered: Dispatch<React.SetStateAction<DataItem[]>>;
+	setData: React.Dispatch<DataItem[]>;
+	setDataFiltered: React.Dispatch<DataItem[]>;
 	categories: string[];
 }
 
-const MainTitle = ({
+const MainTitle: React.FC<MainTitleProps> = ({
 	handleLoad,
 	handleExport,
 	data,
 	setData,
 	setDataFiltered,
 	categories,
-}: MainTitleProps) => {
-	const [barcodeFilter, setBarCodeFilter] = useState("");
-	const [supplierArticleFilter, setSupplierArticleFilter] = useState("");
-	const [itemSizeFilter, setItemSizeFilter] = useState("");
-	const [categoryFilter, setCategoryFilter] = useState<string>("");
+}) => {
+	const {
+		barcodeFilter,
+		categoryFilter,
+		itemSizeFilter,
+		supplierArticleFilter,
+		setBarCodeFilter,
+		setSupplierArticleFilter,
+		setItemSizeFilter,
+		setCategoryFilter,
+		filtered,
+	} = useFilter(data);
 
 	const handleSetFilter = () => {
 		if (!data.length) {
 			return;
 		}
-		const filtered = data.filter((element) => {
-			return (
-				(!barcodeFilter || element.barcode.includes(barcodeFilter)) &&
-				(!supplierArticleFilter ||
-					element.supplierArticle.toLowerCase() ===
-						supplierArticleFilter.toLowerCase()) &&
-				(!itemSizeFilter || element.itemSize === itemSizeFilter) &&
-				(!categoryFilter || element.item === categoryFilter)
-			);
-		});
 		setDataFiltered(filtered);
 	};
 	const handleClearData = () => {
@@ -244,4 +242,4 @@ const MainTitle = ({
 	);
 };
 
-export default MainTitle;
+export default memo(MainTitle);

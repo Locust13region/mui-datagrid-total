@@ -7,7 +7,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { SvgIconProps } from "@mui/material/SvgIcon";
 import { GridSortDirection } from "@mui/x-data-grid/models";
-import { Dispatch, useCallback, useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
 import Snackbar from "@mui/material/Snackbar";
 import Alert, { AlertProps } from "@mui/material/Alert";
 import MainFooter from "./main-footer";
@@ -24,16 +24,16 @@ const UnsortedIcon = (props: GridColumnUnsortedIconProps) => {
 interface MainContentProps {
 	data: DataItem[];
 	dataFiltered: DataItem[];
-	setData: Dispatch<React.SetStateAction<DataItem[]>>;
-	setDataFiltered: Dispatch<React.SetStateAction<DataItem[]>>;
+	setData: React.Dispatch<DataItem[]>;
+	setDataFiltered: React.Dispatch<DataItem[]>;
 }
 
-const MainContent = ({
+const MainContent: React.FC<MainContentProps> = ({
 	data,
 	dataFiltered,
 	setData,
 	setDataFiltered,
-}: MainContentProps) => {
+}) => {
 	const currentData = dataFiltered.length ? dataFiltered : data;
 
 	const [snackbar, setSnackbar] = useState<Pick<
@@ -226,4 +226,4 @@ const MainContent = ({
 	);
 };
 
-export default MainContent;
+export default memo(MainContent);
